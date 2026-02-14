@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="StockMonitor.Business/StockMonitor.Business.csproj" />
+  <Project Path="StockMonitor.DataAccess/StockMonitor.DataAccess.csproj" />
+  <Project Path="StockMonitor.Entities/StockMonitor.Entities.csproj" />
+  <Project Path="StockMonitor.UI/StockMonitor.UI.csproj" />
+</Solution>
