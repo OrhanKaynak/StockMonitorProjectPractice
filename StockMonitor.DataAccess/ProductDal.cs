@@ -71,5 +71,23 @@ namespace StockMonitor.DataAccess
                 command.ExecuteNonQuery();
             }
         }
+
+        public void Update(Product product)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string sql = "UPDATE Products SET ProductName=@name, Price=@price, StockQuantity=@stock WHERE Id=@id";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.AddWithValue("@name", product.ProductName);
+                command.Parameters.AddWithValue("@price", product.Price);
+                command.Parameters.AddWithValue("@stock", product.Stock);
+                command.Parameters.AddWithValue("@id", product.Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }

@@ -30,6 +30,7 @@
         {
             dgwProducts = new DataGridView();
             groupBox1 = new GroupBox();
+            btnUpdate = new Button();
             btnDelete = new Button();
             btnAdd = new Button();
             tbxStock = new TextBox();
@@ -38,6 +39,8 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            cbxCategory = new ComboBox();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgwProducts).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -54,6 +57,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(btnUpdate);
             groupBox1.Controls.Add(btnDelete);
             groupBox1.Controls.Add(btnAdd);
             groupBox1.Controls.Add(tbxStock);
@@ -69,9 +73,19 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Ürün Ekle";
             // 
+            // btnUpdate
+            // 
+            btnUpdate.Location = new Point(110, 162);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(94, 29);
+            btnUpdate.TabIndex = 8;
+            btnUpdate.Text = "GÜNCELLE";
+            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
+            // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(110, 149);
+            btnDelete.Location = new Point(6, 162);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 29);
             btnDelete.TabIndex = 7;
@@ -81,7 +95,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(6, 149);
+            btnAdd.Location = new Point(58, 129);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(94, 29);
             btnAdd.TabIndex = 6;
@@ -138,11 +152,31 @@
             label1.TabIndex = 0;
             label1.Text = "Ürün Adı";
             // 
+            // cbxCategory
+            // 
+            cbxCategory.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxCategory.FormattingEnabled = true;
+            cbxCategory.Location = new Point(72, 203);
+            cbxCategory.Name = "cbxCategory";
+            cbxCategory.Size = new Size(131, 28);
+            cbxCategory.TabIndex = 2;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(5, 206);
+            label4.Name = "label4";
+            label4.Size = new Size(66, 20);
+            label4.TabIndex = 3;
+            label4.Text = "Kategori";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label4);
+            Controls.Add(cbxCategory);
             Controls.Add(groupBox1);
             Controls.Add(dgwProducts);
             Name = "Form1";
@@ -152,6 +186,7 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -166,5 +201,8 @@
         private TextBox tbxStock;
         private TextBox tbxPrice;
         private Button btnDelete;
+        private Button btnUpdate;
+        private ComboBox cbxCategory;
+        private Label label4;
     }
 }

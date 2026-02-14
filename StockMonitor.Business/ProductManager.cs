@@ -31,5 +31,10 @@ namespace StockMonitor.Business
         {
             _productDal.Delete(id);
         }
+
+        public void Update(Product product)
+        { 
+            _productDal.Update(product);
+        }
     }
 }
