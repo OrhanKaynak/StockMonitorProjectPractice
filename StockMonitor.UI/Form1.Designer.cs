@@ -41,6 +41,8 @@
             label1 = new Label();
             cbxCategory = new ComboBox();
             label4 = new Label();
+            label5 = new Label();
+            tbxSearch = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgwProducts).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -54,6 +56,7 @@
             dgwProducts.Size = new Size(591, 450);
             dgwProducts.TabIndex = 0;
             dgwProducts.CellClick += dgwProducts_CellClick;
+            dgwProducts.CellFormatting += dgwProducts_CellFormatting;
             // 
             // groupBox1
             // 
@@ -170,11 +173,30 @@
             label4.TabIndex = 3;
             label4.Text = "Kategori";
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(5, 254);
+            label5.Name = "label5";
+            label5.Size = new Size(67, 20);
+            label5.TabIndex = 4;
+            label5.Text = "Ürün Ara";
+            // 
+            // tbxSearch
+            // 
+            tbxSearch.Location = new Point(72, 251);
+            tbxSearch.Name = "tbxSearch";
+            tbxSearch.Size = new Size(131, 27);
+            tbxSearch.TabIndex = 5;
+            tbxSearch.TextChanged += tbxSearch_TextChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(tbxSearch);
+            Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(cbxCategory);
             Controls.Add(groupBox1);
@@ -204,5 +226,7 @@
         private Button btnUpdate;
         private ComboBox cbxCategory;
         private Label label4;
+        private Label label5;
+        private TextBox tbxSearch;
     }
 }

@@ -89,5 +89,36 @@ namespace StockMonitor.DataAccess
                 command.ExecuteNonQuery();
             }
         }
+
+        public List<Product> GetProductsByName (string key)
+        {
+            List<Product> products = new List<Product>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string sql = "SELECT * FROM Products WHERE ProductName LIKE @key";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.AddWithValue("@key", "%" + key + "%");
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Product p = new Product
+                    {
+                        Id = Convert.ToInt32(reader["ID"]),
+                        ProductName = reader["ProductName"].ToString(),
+                        Price = Convert.ToDecimal(reader["Price"]),
+                        Stock = Convert.ToInt32(reader["StockQuantity"]),
+                        CategoryId = Convert.ToInt32(reader["CategoryId"])
+                    };
+                    products.Add(p);
+                }
+                reader.Close();
+            }
+            return products;
+        }
     }
 }

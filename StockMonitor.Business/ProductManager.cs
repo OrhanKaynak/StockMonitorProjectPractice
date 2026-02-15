@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using StockMonitor.DataAccess;
 using StockMonitor.Entities;
+using StockMonitor.Business.ValidationRules;
+using System.Xml.XPath;
 
 namespace StockMonitor.Business
 {
@@ -24,6 +26,13 @@ namespace StockMonitor.Business
         }
         public void Add(Product product)
         {
+            ProductValidator productValidator = new ProductValidator();
+            var result = productValidator.Validate(product);
+            if (result.IsValid == false)
+            {
+                throw new Exception(result.Errors[0].ErrorMessage);
+            }
+
             _productDal.Add(product);
         }
 
@@ -33,8 +42,21 @@ namespace StockMonitor.Business
         }
 
         public void Update(Product product)
-        { 
+        {
+            ProductValidator productValidator = new ProductValidator();
+            var result = productValidator.Validate(product);
+
+            if (result.IsValid == false)
+            {
+                throw new Exception(result.Errors[0].ErrorMessage);
+            }
+
             _productDal.Update(product);
+        }
+
+        public List<Product> GetProductsByName(string key)
+        {
+            return _productDal.GetProductsByName(key);
         }
     }
 }

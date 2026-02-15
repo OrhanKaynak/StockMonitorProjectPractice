@@ -43,8 +43,8 @@ namespace StockMonitor.UI
             Product product = new Product
             {
                 ProductName = tbxName.Text,
-                Price = Convert.ToDecimal(tbxPrice.Text),
-                Stock = Convert.ToInt32(tbxStock.Text),
+                Price = string.IsNullOrEmpty(tbxPrice.Text) ? 0 : Convert.ToDecimal(tbxPrice.Text),
+                Stock = string.IsNullOrEmpty(tbxStock.Text) ? 0 : Convert.ToInt32(tbxStock.Text),
                 CategoryId = Convert.ToInt32(cbxCategory.SelectedValue)
             };
             _productManager.Add(product);
@@ -120,6 +120,38 @@ namespace StockMonitor.UI
             tbxName.Clear();
             tbxPrice.Clear();
             tbxStock.Clear();
+        }
+
+        private void tbxSearch_TextChanged(object sender, EventArgs e)
+        {
+            string key = tbxSearch.Text;
+
+            if (string.IsNullOrEmpty(key))
+            {
+                LoadProducts();
+            }
+            else
+            {
+                dgwProducts.DataSource = _productManager.GetProductsByName(key);
+            }
+        }
+
+        private void dgwProducts_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgwProducts.Rows[e.RowIndex];
+                if (row.Cells["Stock"].Value != null)
+                {
+                    int stock = Convert.ToInt32(row.Cells["Stock"].Value);
+
+                    if (stock < 10)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.OrangeRed;
+                        row.DefaultCellStyle.ForeColor = Color.White;                    
+                    }
+                }
+            }
         }
     }
 }
