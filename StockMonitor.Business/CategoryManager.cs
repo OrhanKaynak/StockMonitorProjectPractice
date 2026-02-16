@@ -6,7 +6,12 @@ namespace StockMonitor.Business
 {
     public class CategoryManager
     {
-        CategoryDal _categoryDal = new CategoryDal();
+        ICategoryDal _categoryDal;
+
+        public CategoryManager()
+        {
+            _categoryDal = new CategoryDal();
+        }
 
         public List<Category> GetAll()
         {

@@ -5,7 +5,7 @@ using StockMonitor.Entities;
 
 namespace StockMonitor.DataAccess
 {
-    public class CategoryDal
+    public class CategoryDal : ICategoryDal
     {
         string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=StokTakipDB;Integrated Security=True";
 

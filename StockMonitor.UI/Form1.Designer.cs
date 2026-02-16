@@ -43,17 +43,23 @@
             label4 = new Label();
             label5 = new Label();
             tbxSearch = new TextBox();
+            groupBox2 = new GroupBox();
+            lblTotalAmount = new Label();
+            label8 = new Label();
+            lblProductCount = new Label();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgwProducts).BeginInit();
             groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // dgwProducts
             // 
             dgwProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgwProducts.Location = new Point(209, 0);
+            dgwProducts.Location = new Point(266, 0);
             dgwProducts.Name = "dgwProducts";
             dgwProducts.RowHeadersWidth = 51;
-            dgwProducts.Size = new Size(591, 450);
+            dgwProducts.Size = new Size(650, 556);
             dgwProducts.TabIndex = 0;
             dgwProducts.CellClick += dgwProducts_CellClick;
             dgwProducts.CellFormatting += dgwProducts_CellFormatting;
@@ -71,14 +77,14 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(-1, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(204, 197);
+            groupBox1.Size = new Size(261, 197);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Ürün Ekle";
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(110, 162);
+            btnUpdate.Location = new Point(141, 164);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(94, 29);
             btnUpdate.TabIndex = 8;
@@ -88,7 +94,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(6, 162);
+            btnDelete.Location = new Point(41, 164);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 29);
             btnDelete.TabIndex = 7;
@@ -98,7 +104,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(58, 129);
+            btnAdd.Location = new Point(95, 129);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(94, 29);
             btnAdd.TabIndex = 6;
@@ -108,21 +114,21 @@
             // 
             // tbxStock
             // 
-            tbxStock.Location = new Point(73, 96);
+            tbxStock.Location = new Point(110, 96);
             tbxStock.Name = "tbxStock";
             tbxStock.Size = new Size(125, 27);
             tbxStock.TabIndex = 5;
             // 
             // tbxPrice
             // 
-            tbxPrice.Location = new Point(73, 56);
+            tbxPrice.Location = new Point(110, 56);
             tbxPrice.Name = "tbxPrice";
             tbxPrice.Size = new Size(125, 27);
             tbxPrice.TabIndex = 4;
             // 
             // tbxName
             // 
-            tbxName.Location = new Point(73, 20);
+            tbxName.Location = new Point(110, 16);
             tbxName.Name = "tbxName";
             tbxName.Size = new Size(125, 27);
             tbxName.TabIndex = 3;
@@ -159,7 +165,7 @@
             // 
             cbxCategory.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxCategory.FormattingEnabled = true;
-            cbxCategory.Location = new Point(72, 203);
+            cbxCategory.Location = new Point(94, 203);
             cbxCategory.Name = "cbxCategory";
             cbxCategory.Size = new Size(131, 28);
             cbxCategory.TabIndex = 2;
@@ -184,17 +190,67 @@
             // 
             // tbxSearch
             // 
-            tbxSearch.Location = new Point(72, 251);
+            tbxSearch.Location = new Point(94, 251);
             tbxSearch.Name = "tbxSearch";
             tbxSearch.Size = new Size(131, 27);
             tbxSearch.TabIndex = 5;
             tbxSearch.TextChanged += tbxSearch_TextChanged;
             // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(lblTotalAmount);
+            groupBox2.Controls.Add(label8);
+            groupBox2.Controls.Add(lblProductCount);
+            groupBox2.Controls.Add(label6);
+            groupBox2.Location = new Point(-1, 284);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(261, 272);
+            groupBox2.TabIndex = 6;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "İstatistikler";
+            // 
+            // lblTotalAmount
+            // 
+            lblTotalAmount.AutoSize = true;
+            lblTotalAmount.Location = new Point(148, 82);
+            lblTotalAmount.Name = "lblTotalAmount";
+            lblTotalAmount.Size = new Size(17, 20);
+            lblTotalAmount.TabIndex = 3;
+            lblTotalAmount.Text = "0";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(6, 82);
+            label8.Name = "label8";
+            label8.Size = new Size(141, 20);
+            label8.TabIndex = 2;
+            label8.Text = "Toplam Stok Değeri";
+            // 
+            // lblProductCount
+            // 
+            lblProductCount.AutoSize = true;
+            lblProductCount.Location = new Point(148, 44);
+            lblProductCount.Name = "lblProductCount";
+            lblProductCount.Size = new Size(17, 20);
+            lblProductCount.TabIndex = 1;
+            lblProductCount.Text = "0";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(6, 44);
+            label6.Name = "label6";
+            label6.Size = new Size(135, 20);
+            label6.TabIndex = 0;
+            label6.Text = "Toplam Ürün Sayısı";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(916, 558);
+            Controls.Add(groupBox2);
             Controls.Add(tbxSearch);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -203,10 +259,13 @@
             Controls.Add(dgwProducts);
             Name = "Form1";
             Text = "Form1";
+            FormClosed += Form1_FormClosed;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dgwProducts).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -228,5 +287,10 @@
         private Label label4;
         private Label label5;
         private TextBox tbxSearch;
+        private GroupBox groupBox2;
+        private Label label8;
+        private Label lblProductCount;
+        private Label label6;
+        private Label lblTotalAmount;
     }
 }

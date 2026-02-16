@@ -20,6 +20,7 @@ namespace StockMonitor.UI
         {
             LoadProducts();
             LoadCategories();
+            UpdateStatics();
         }
         private void LoadProducts()
         {
@@ -52,6 +53,7 @@ namespace StockMonitor.UI
             MessageBox.Show("Ürün başarıyla eklendi");
 
             LoadProducts();
+            UpdateStatics();
         }
 
         private void dgwProducts_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -89,6 +91,7 @@ namespace StockMonitor.UI
             MessageBox.Show("Ürün silindi!");
 
             LoadProducts();
+            UpdateStatics();
 
             _selectedProductId = 0;
 
@@ -117,6 +120,8 @@ namespace StockMonitor.UI
 
             MessageBox.Show("Ürün başarıyla güncellendi.");
             LoadProducts();
+            UpdateStatics();
+
             tbxName.Clear();
             tbxPrice.Clear();
             tbxStock.Clear();
@@ -148,10 +153,24 @@ namespace StockMonitor.UI
                     if (stock < 10)
                     {
                         row.DefaultCellStyle.BackColor = Color.OrangeRed;
-                        row.DefaultCellStyle.ForeColor = Color.White;                    
+                        row.DefaultCellStyle.ForeColor = Color.White;
                     }
                 }
             }
+        }
+
+        private void UpdateStatics()
+        {
+            int count = _productManager.GetProductCount();
+            lblProductCount.Text = count.ToString();
+
+            decimal total = _productManager.GetTotalAmount();
+            lblTotalAmount.Text = total.ToString();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

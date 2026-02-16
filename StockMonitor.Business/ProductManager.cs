@@ -9,7 +9,12 @@ namespace StockMonitor.Business
 {
     public class ProductManager
     {
-        ProductDal _productDal = new ProductDal();
+        IProductDal _productDal;
+
+        public ProductManager()
+        {
+            _productDal = new ProductDal();
+        }
 
         public List<Product> GetAll()
         {
@@ -57,6 +62,16 @@ namespace StockMonitor.Business
         public List<Product> GetProductsByName(string key)
         {
             return _productDal.GetProductsByName(key);
+        }
+
+       public int GetProductCount()
+        {
+            return _productDal.GetProductCount();
+        }
+
+        public decimal GetTotalAmount()
+        {
+            return _productDal.GetTotalAmount();
         }
     }
 }

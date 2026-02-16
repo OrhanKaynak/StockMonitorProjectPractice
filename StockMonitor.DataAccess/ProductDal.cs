@@ -5,7 +5,7 @@ using StockMonitor.Entities;
 
 namespace StockMonitor.DataAccess
 {
-    public class ProductDal
+    public class ProductDal : IProductDal
     {
         string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=StokTakipDB;Integrated Security=True";
         public List<Product> GetAll()
@@ -119,6 +119,40 @@ namespace StockMonitor.DataAccess
                 reader.Close();
             }
             return products;
+        }
+
+        public int GetProductCount()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM Products", connection);
+
+                connection.Open();
+
+                int count = Convert.ToInt32 (command.ExecuteScalar());
+                return count;
+            }
+        }
+
+        public decimal GetTotalAmount()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT SUM(Price * StockQuantity) FROM Products", connection);
+
+                connection.Open();
+
+                object result = command.ExecuteScalar();
+
+                if (result != DBNull.Value && result != null)
+                {
+                    return Convert.ToDecimal(result);
+                }
+                else
+                {
+                    return 0;
+                }
+            }
         }
     }
 }
